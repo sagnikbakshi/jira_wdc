@@ -11,9 +11,53 @@
         alias: "key",
         dataType: tableau.dataTypeEnum.string
     }, {
-        id: "email",
-        alias: "email",
+        id: "issueType",
+        alias: "issueType",
         dataType: tableau.dataTypeEnum.string
+    }, {
+        id: "summary",
+        alias: "summary",
+        dataType: tableau.dataTypeEnum.string
+    }, {
+        id: "assignee",
+        alias: "assignee",
+        dataType: tableau.dataTypeEnum.string
+    }, {
+        id: "resolution",
+        alias: "resolution",
+        dataType: tableau.dataTypeEnum.string
+    }, {
+        id: "created",
+        alias: "created",
+        dataType: tableau.dataTypeEnum.date,
+	}, {
+        id: "updated",
+        alias: "updated",
+        dataType: tableau.dataTypeEnum.date,
+    }, {
+        id: "epicLink",
+        alias: "epicLink",
+        dataType: tableau.dataTypeEnum.string
+    }, {
+        id: "fixVersions",
+        alias: "fixVersions",
+        dataType: tableau.dataTypeEnum.string
+    }, {
+        id: "originalEstimate",
+        alias: "originalEstimate",
+        dataType: tableau.dataTypeEnum.int
+    }, {
+        id: "timeSpent",
+        alias: "timeSpent",
+        dataType: tableau.dataTypeEnum.int
+    }, {
+        id: "resolutionDate",
+        alias: "resolutionDate",
+        dataType: tableau.dataTypeEnum.date
+    }, {
+        id: "storyPoints",
+        alias: "storyPoints",
+        dataType: tableau.dataTypeEnum.float
     }];
 
     var tableSchema = {
@@ -37,7 +81,19 @@
 				tableData.push({
 					"id": resp.issues[i].id,
 					"key": resp.issues[i].key,
-					"email": resp.issues[i].fields.reporter.emailAddress
+					"issueType": resp.issues[i].fields.issuetype.name,
+					"summary":resp.issues[i].summary,
+					"assignee":resp.issues[i].assignee,
+					"resolution":resp.issues[i].resolution.name,
+					"created":resp.issues[i].created,
+					"updated":resp.issues[i].updated,
+					"epicLink":resp.issues[i].customfield_12487,
+					"fixVersions":resp.issues[i].fixVersions[1].name,
+					"originalEstimate":resp.issues[i].progress.total,
+					"timeSpent":resp.issues[i].progress.progress,
+					"resolutionDate":resp.issues[i].resolutiondate,
+					"storyPoints":resp.issues[i].customfield_10003
+						
 				});
 			}
 			
